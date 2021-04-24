@@ -61,10 +61,7 @@
 
 
 var myMap= L.map('mapid').setView([38.53923062275447, -105.99221539654775],8);
-// var myMap = L.map("mapid", {
-//   center: [45.52, -122.67],
-//   zoom: 13
-// });
+
 
 // Add a tile layer (the background map image) to our map
 // We use the addTo method to add objects to our map
@@ -84,38 +81,27 @@ d3.json("/Resources/mountains_db.json").then(function(data) {
   for(i=0; i<data.length; i++) {
     mt_longs.push(data[i]["Peak Longitude"]);
     mt_lats.push(data[i]["Peak Latitude"]);
-    // var marker = L.marker(mt_lats[i], {
-    //   draggable: true,
-    //   title: "something"
-    // }).addTo(myMap);
-    // console.log(marker);
   
-  console.log(mt_lats);
-  console.log(mt_longs);
-  console.log(mt_lats[0]);
-  console.log(mt_longs[0]);
   var marker = L.marker([mt_lats[i], mt_longs[i]], {
   title: "My First Marker"
-}).addTo(myMap).bindPopup(`<br><b>${data[i]["Mountain Peak"]}</b>	<br>${data[i]["Mountain Range"]}	<br>${data[i]["Elevation_ft"]}	<br>${data[i]["fourteener"]}	<br>${data[i]["Prominence_ft"]}	<br>${data[i]["Isolation_mi"]}	<br>${data[i]["Peak Longitude"]}	<br>${data[i]["Peak Latitude"]}	<br>${data[i]["Standard Route"]}	<br>${data[i]["Standard Route Distance (miles)"]}	<br>${data[i]["Elevation Gain_ft"]}	<br>${data[i]["Difficulty"]}	<br>${data[i]["Traffic Low"]}	<br>${data[i]["Traffic High"]}	<br>${data[i]["photo"]}`);}});
-// for(i=0; i<data.length; i++) {
-//   marker.bindPopup(`<b>${data[i]["Mountain Peak"]}</b><br>I am a popup.`)};
-// });
+}).addTo(myMap).bindPopup(`<br><b>Mountain Peak: ${data[i]["Mountain Peak"]}</b>	<br>Mountain Range: ${data[i]["Mountain Range"]}	<br>Elevation_ft: ${data[i]["Elevation_ft"]}	<br>fourteener: ${data[i]["fourteener"]}	<br>Prominence_ft: ${data[i]["Prominence_ft"]}	<br>Isolation_mi: ${data[i]["Isolation_mi"]}	<br>Peak Longitude: ${data[i]["Peak Longitude"]}	<br>Peak Latitude: ${data[i]["Peak Latitude"]}	<br>Standard Route: ${data[i]["Standard Route"]}	<br>Standard Route Distance (miles): ${data[i]["Standard Route Distance (miles)"]}	<br>Elevation Gain_ft: ${data[i]["Elevation Gain_ft"]}	<br>Difficulty: ${data[i]["Difficulty"]}	<br>Traffic Low: ${data[i]["Traffic Low"]}	<br>Traffic High: ${data[i]["Traffic High"]}	<br>photo: ${data[i]["photo"]}`);}});
 
-// Create a new marker
-// Pass in some initial options, and then add it to the map using the addTo method
-// for(i= 0; i<59; i++) {
-//   var marker = L.marker(mt_lats[i], {
-//     draggable: true,
-//     title: "My First Marker" 
-//   }).addTo(myMap);
-//   marker.bindPopup("Hello There!");
-// }
 
-// var marker = L.marker([45.52, -122.67], {
-//   draggable: true,
-//   title: "My First Marker"
-// }).addTo(myMap);
 
-// Binding a pop-up to our marker
-
+d3.json("/Resources/everything_14ers_db.json").then(function(data) {
+  console.log(data)
+var camp_lats = []
+var camp_longs = []
+for(i=0; i<data.length; i++) {
+  camp_longs.push(data[i]["Campsite Longitude"]);
+  camp_lats.push(data[i]["Campsite Latitude"]);
+  var greenIcon = L.icon({
+    iconUrl: 'camp.png',
+    iconSize: [10, 10]
+  });
+  var circle = L.marker([camp_lats[i], camp_longs[i]], {
+   icon: greenIcon}
+    ).addTo(myMap).bindPopup(`<br>${data[i]["name"]}</br>`)
+  };
+});
 
