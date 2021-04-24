@@ -82,17 +82,24 @@ d3.json("/Resources/mountains_db.json").then(function(data) {
   var mt_longs = []
   var mts = []
   for(i=0; i<data.length; i++) {
-    mt_lats.push(data[i]["Peak Longitude"]);
+    mt_longs.push(data[i]["Peak Longitude"]);
     mt_lats.push(data[i]["Peak Latitude"]);
     // var marker = L.marker(mt_lats[i], {
     //   draggable: true,
     //   title: "something"
     // }).addTo(myMap);
     // console.log(marker);
-  }
+  
   console.log(mt_lats);
-  // console.log(mt_longs);
-});
+  console.log(mt_longs);
+  console.log(mt_lats[0]);
+  console.log(mt_longs[0]);
+  var marker = L.marker([mt_lats[i], mt_longs[i]], {
+  title: "My First Marker"
+}).addTo(myMap).bindPopup(`<br><b>${data[i]["Mountain Peak"]}</b>	<br>${data[i]["Mountain Range"]}	<br>${data[i]["Elevation_ft"]}	<br>${data[i]["fourteener"]}	<br>${data[i]["Prominence_ft"]}	<br>${data[i]["Isolation_mi"]}	<br>${data[i]["Peak Longitude"]}	<br>${data[i]["Peak Latitude"]}	<br>${data[i]["Standard Route"]}	<br>${data[i]["Standard Route Distance (miles)"]}	<br>${data[i]["Elevation Gain_ft"]}	<br>${data[i]["Difficulty"]}	<br>${data[i]["Traffic Low"]}	<br>${data[i]["Traffic High"]}	<br>${data[i]["photo"]}`);}});
+// for(i=0; i<data.length; i++) {
+//   marker.bindPopup(`<b>${data[i]["Mountain Peak"]}</b><br>I am a popup.`)};
+// });
 
 // Create a new marker
 // Pass in some initial options, and then add it to the map using the addTo method
@@ -104,10 +111,10 @@ d3.json("/Resources/mountains_db.json").then(function(data) {
 //   marker.bindPopup("Hello There!");
 // }
 
-var marker = L.marker([mt_lats[0], mt_lats[1]], {
-  draggable: true,
-  title: "My First Marker"
-}).addTo(myMap);
+// var marker = L.marker([45.52, -122.67], {
+//   draggable: true,
+//   title: "My First Marker"
+// }).addTo(myMap);
 
 // Binding a pop-up to our marker
 
