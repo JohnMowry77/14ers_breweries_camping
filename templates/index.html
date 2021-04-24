@@ -17,10 +17,15 @@
 <!--   <link rel="stylesheet" href="assets/css/d3Style.css"> -->
 <!--   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script> -->
-
+<!--     <script>
+      var jsonfile ={{jsonfile}};
+    </script> -->
 </head>
-
-<body>
+<!-- https://stackoverflow.com/questions/62906140/displaying-json-in-the-html-using-flask-and-local-json-file -->
+<body class="black">
+<!--   <div class="container">
+    {{jsonfile}}
+  </div> -->
   <div class="container">
     <div class="row">
       <!-- Mix and match bootsrap used-->
@@ -38,55 +43,52 @@
     <div class="row">
       <div class="col-xs-12  col-md-9">
         <div class="article">
-          <br><br><br><br><h2>Breweries Graph /Breweries Data Table / 14ers Data table</h2>
+          <br><br><br><br><h2></h2>
           
         </div><br>
       </div><br>
-    <div class="row">
+<!--     <div class="row">
       <div class="col-xs-4 col-md-4">
         <img src="..\Output\CO_BreweryCount_vs_Time.png" class= "img-fluid">
       </div><br>
-      <div class ="col-xs-4 col-md-4">
+      <div class ="col-xs-4 col-md-4"> -->
         <!--Remove and put Breweries Data Table here!-->
-        <p> put Breweries Data Table here</p>
-        <img src="..\Output\Top10_States_by_TotalBeerSales.png" class ="img-fluid">
-      </div><br>
-      <div class ="col-xs-4 col-md-4">
-        <p> put 14ers data table here</p>
+        
+<!--         <img src="..\Output\Top10_States_by_TotalBeerSales.png" class ="img-fluid">
+      </div><br> -->
+      <div class="col-xs-12 col-md-12">
+          <div id="slides" class="carousel slide" data-ride="carousel">
+    <ul class="carousel-indicators">
+      <li data-target="#slides" data-slide-to="0" class="active"></li>
+      <li data-target="#slides" data-slide-to="1"></li>
+      <li data-target="#slides" data-slide-to="2"></li>
+    </ul>
+    <div class="carousel-inner">   
+      <div class="carousel-item active">
+        <img src="../gifs/sunclouds.gif">
+        <div class="carousel-caption">
+<!--           <h3 class="display-2">Breweries</h3> -->
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../gifs/lake.gif">
+        <div class="carousel-caption">
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../gifs/beerpouringlol.gif">
+        <div class="carousel-caption">
+        </div>
+      </div>
+      
+    </div>  
       </div><br>
     </div><br>
-
-    <!-- image carousel -->
-	<div id="slides" class="carousel slide" data-ride="carousel">
-		<ul class="carousel-indicators">
-			<li data-target="#slides" data-slide-to="0" class="active"></li>
-			<li data-target="#slides" data-slide-to="1"></li>
-			<li data-target="#slides" data-slide-to="2"></li>
-		</ul>
-		<div class="carousel-inner">   
-			<div class="carousel-item active">
-				<img src="../gifs/sunclouds.gif">
-				<div class="carousel-caption">
-					<h3 class="display-2">Breweries</h3>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<img src="../gifs/lake.gif">
-				<div class="carousel-caption">
-				</div>
-			</div>
-			<div class="carousel-item">
-				<img src="../gifs/beerpouringlol.gif">
-				<div class="carousel-caption">
-				</div>
-			</div>
-			
-		</div>  
 
   </div>
   <!-- Footer-->
   <div id="footer">
-    <p> PUSH THE IMAGES LOWER </p>
+
   </div>
 
 <!--   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
