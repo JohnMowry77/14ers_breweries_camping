@@ -56,7 +56,8 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
   accessToken: API_KEY
 }).addTo(myMap);
 
-d3.json("/Resources/mountains_db.json").then(function(data) {
+// d3.json("/Resources/mountains_db.json").then(function(data) {
+d3.json("http://localhost:5000/getmountains").then(function(data) {
   var mt_lats = []
   var mt_longs = []
   var mts = []
@@ -73,48 +74,64 @@ d3.json("/Resources/mountains_db.json").then(function(data) {
 
 
 
-d3.json("/Resources/everything_14ers_db.json").then(function(data) {
-var camp_lats = []
-var camp_longs = []
-var beer_lats = []
-var beer_longs = []
-var gas_lats = []
-var gas_longs = []
-for(i=0; i<data.length; i++) {
-  if("Campsite Latitude" in data[i]){ 
-    camp_lats.push(data[i]["Campsite Latitude"]);
-    camp_longs.push(data[i]["Campsite Longitude"]);
-    var campIcon = L.icon({
-      iconUrl: 'camp.png',
-      iconSize: [10, 10]
-    });
-    L.marker([camp_lats[i], camp_longs[i]], {
-      icon: campIcon}
-       ).addTo(myMap).bindPopup(`<br><b>Campsite Name : ${data[i]["name"]}</b></br><br>Nearest 14er: ${data[i]["Mountain Peak"]}</br><br>Miles from 14er : ${data[i]["Distance from Campsite (mi)"]}</br>`)
-  }
-  // else if("Brewery Latitudes" in data[i]) {
-  //   beer_lats.push(data[i]["Brewery Latitudes"]);
-  //   beer_longs.push(data[i]["Brewery Longitudes"]);
-  //   var beerIcon = L.icon({
-  //     iconUrl : "bottle.png",
-  //     iconSize : [10,10]
-  //   });
-  //   L.marker([beer_lats[i], beer_longs[i]], {
-  //     icon: beerIcon
-  //   }).addTo(myMap).bindPopup(`<br><b>Brewery Name : ${data[i]["Brewery Name"]}</b></br><br>Brewery Address : ${data[i]["Brewery Address"]}</br><br>Brewery Website : ${data[i]["Brewery Website"]}</br><br>Nearest 14er : ${data[i]["Mountain Peak"]}</br>`)
-  // }
+// d3.json("/Resources/everything_14ers_db.json").then(function(data) {
+d3.json("http://localhost:5000/get14ers").then(function(data) {  
+  var camp_lats = []
+  var camp_longs = []
+  var beer_lats = []
+  var beer_longs = []
+  var gas_lats = []
+  var gas_longs = []
+  var charger_lats=[]
+  var charger_longs=[]
+  for(i=0; i<data.length; i++) {
+    if(("Campsite Latitude" in data[i]) & ("Campsite Longitude" in data[i])){ 
+      camp_lats.push(data[i]["Campsite Latitude"]);
+      camp_longs.push(data[i]["Campsite Longitude"]);
+      var campIcon = L.icon({
+        iconUrl: 'camp.png',
+        iconSize: [10, 10]
+      });
+      // L.marker([camp_lats[i], camp_longs[i]], {
+      L.marker([data[i]['Campsite Latitude'], data[i]['Campsite Longitude']], {        
+        icon: campIcon}
+         ).addTo(myMap).bindPopup(`<br><b>Campsite Name : ${data[i]["name"]}</b></br><br>Nearest 14er: ${data[i]["Mountain Peak"]}</br><br>Miles from 14er : ${data[i]["Distance from Campsite (mi)"]}</br>`)
+    }
+    if(("Brewery Latitudes" in data[i]) & ("Brewery Longitudes" in data[i])) {
+      beer_lats.push(data[i]["Brewery Latitudes"]);
+      beer_longs.push(data[i]["Brewery Longitudes"]);
+      var beerIcon = L.icon({
+        iconUrl : "bottle.png",
+        iconSize : [15,15]
+      });
+      // L.marker([beer_lats[i], beer_longs[i]], {
+      L.marker([data[i]['Brewery Latitudes'], data[i]['Brewery Longitudes']], {  
+        icon: beerIcon
+      }).addTo(myMap).bindPopup(`<br><b>Brewery Name : ${data[i]["Brewery Name"]}</b></br><br>Brewery Address : ${data[i]["Brewery Address"]}</br><br>Brewery Website : ${data[i]["Brewery Website"]}</br><br>Nearest 14er : ${data[i]["Mountain Peak"]}</br>`)
+    }
 
-  else if("Gas Station Latitude" in data[i]) {
-    var gasIcon = L.icon({
-      iconUrl : "Gas.png",
-      iconSize : [10,10]
-    });
-    gas_lats.push(data[i]["Gas Station Latitude"]);
-    gas_longs.push(data[i]["Gas Station Longitude"]);
-    L.marker([gas_lats[i], gas_longs[i]], {
-      icon : gasIcon
-    }).addTo(myMap).bindPopup(`<br><b>Gas Station Name : ${data[i]["Gas Station Name"]}</b></br><br>Nearest 14er : ${data[i]["Mountain Peak"]}</br><br>Miles From Mountain Peak : ${data[i]["Gas Station Distance from Mountain Peak (mi)"]}`)}
-  }
-console.log(gas_longs);
+    if(("Gas Station Latitude" in data[i]) & ("Gas Station Longitude" in data[i])) {
+      var gasIcon = L.icon({
+        iconUrl : "Gas.png",
+        iconSize : [10,10]
+      });
+      gas_lats.push(data[i]["Gas Station Latitude"]);
+      gas_longs.push(data[i]["Gas Station Longitude"]);
+      L.marker([data[i]['Gas Station Latitude'], data[i]['Gas Station Longitude']], {
+        icon : gasIcon
+      }).addTo(myMap).bindPopup(`<br><b>Gas Station Name : ${data[i]["Gas Station Name"]}</b></br><br>Nearest 14er : ${data[i]["Mountain Peak"]}</br><br>Miles From Mountain Peak : ${data[i]["Gas Station Distance from Mountain Peak (mi)"]}`)}
+    }
+    // if(("Charging Station Latitude" in data[i]) & ("Charging Station Longitude" in data[i])) {
+    //   var chargerIcon = L.icon({
+    //     iconUrl : "charger.png",
+    //     iconSize : [50,50]
+    //   });
+    //   charger_lats.push(data[i]["Charging Station Latitude"]);
+    //   charger_longs.push(data[i]["Charging Station Longitude"]);
+    //   L.marker([data[i]['Charging Station Latitude'], data[i]['Charging Station Longitude']], {
+    //     icon : chargerIcon
+    //   }).addTo(myMap).bindPopup(`<br><b>Charger Station Name : ${data[i]["Charger Station Name"]}</b></br><br>Nearest 14er : ${data[i]["Mountain Peak"]}</br><br>Miles From Mountain Peak : ${data[i]["Charging Station Distance from Mountain Peak (mi)"]}`)}
+    // }
+  // console.log(charger_lats);
 });
 

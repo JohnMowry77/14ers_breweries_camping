@@ -1,51 +1,30 @@
-from flask import Flask, render_template, redirect, url_for, json, jsonify
-import json
-import html
-
-from flask import Flask, request
-from flask_json import FlaskJSON, JsonError, json_response, as_json
-
-# import scrape_mars
-
-#Create an instance of Flask
-app=Flask(__name__)
-# # Use flast_pymongo to set up mongo connection
-# app.config["MONGO_URI"] ="mongodb://localhost:27017/FullData"
-# mongo=PyMongo(app)
-json = FlaskJSON(app)
-
-with open ('Resources/mountains_db.json', 'r') as myfile:
-	data= myfile.read()
+from flask import (Flask,render_template,request,redirect, jsonify)
+from flask_pymongo import PyMongo
 
 
+app = Flask(__name__)
 
-@app.route('/')
-# @app.route("/")
-# def home():
-	# print("This is working")
-		# return "Welcome to Map Page"
-	# mongo_data=mongo.db.mountains_db.find_one()
-	# #print(list(data_from_mongo))	
-	# if mongo_data:
-	# 	return render_template('index.html', mountains_db=mongo_data)
-	# else:
-		# return 'Error Try Again'
-	#return render_template('index.html', dict=data_from_mongo)
-	# return render_template('index.html')
-	# return redirect('/')
+# client = pymongo.MongoClient("mongodb+srv://dalberghini:Jjaxxpass2@project2.7h3eu.mongodb.net/FullData?retryWrites=true&w=majority")
+# db = client.FullData
+# mongo = PyMongo(app, uri = 'mongodb+srv://dalberghini:Jjaxxpass2@project2.7h3eu.mongodb.net/FullData?retryWrites=true&w=majority')
 
-# @app.route("/")
+# app.config["MONGO_URI"] = 'mongodb+srv://dalberghini:Jjaxxpass2@project2.7h3eu.mongodb.net/FullData'# ?retryWrites=true&w=majority'
+# mongo = PyMongo(app)
+
+# client = pymongo.MongoClient("mongodb+srv://dalberghini:<password>@project2.7h3eu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+db = client.test
+
+@app.route("/")
 def index():
-    return render_template('index.html', title="page", jsonfile=jsonify(data))
+   
+    return render_template('index.html')
 
+@app.route("/jsonify")
+def data():
+    mountains = mongo.db.mountains_db.find_one()
+    print(mountains)
+    return None
+    # return jsonify(list(mountains))
 
-
-# def showjson():
-#     SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
-#     json_url = os.path.join(SITE_ROOT, "Resources", "mountains_db.json")
-#     data = json.load(open(json_url))
-#     return render_template('showjson.jade', data=data)
-
-
-if __name__=='__main__':
-	app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
