@@ -104,10 +104,9 @@ d3.json("http://localhost:5000/get14ers").then(function(data) {
       beer_lats.push(data[i]["Brewery Latitudes"]);
       beer_longs.push(data[i]["Brewery Longitudes"]);
       var beerIcon = L.icon({
-        iconUrl : "bottle.png",
+        iconUrl : "beer.png",
         iconSize : [15,15]
       });
-      // L.marker([beer_lats[i], beer_longs[i]], {
       L.marker([data[i]['Brewery Latitudes'], data[i]['Brewery Longitudes']], {  
         icon: beerIcon
       }).addTo(myMap).bindPopup(`<br><b>Brewery Name : ${data[i]["Brewery Name"]}</b></br><br>Brewery Address : ${data[i]["Brewery Address"]}</br><br>Brewery Website : ${data[i]["Brewery Website"]}</br><br>Nearest 14er : ${data[i]["Mountain Peak"]}</br>`)
@@ -122,34 +121,31 @@ d3.json("http://localhost:5000/get14ers").then(function(data) {
       gas_longs.push(data[i]["Gas Station Longitude"]);
       L.marker([data[i]['Gas Station Latitude'], data[i]['Gas Station Longitude']], {
         icon : gasIcon
-      }).addTo(myMap).bindPopup(`<br><b>Gas Station Name : ${data[i]["Gas Station Name"]}</b></br><br>Nearest 14er : ${data[i]["Mountain Peak"]}</br><br>Miles From Mountain Peak : ${data[i]["Gas Station Distance from Mountain Peak (mi)"]}`)}
+      }).addTo(myMap).bindPopup(`<br><b>Gas Station Name : ${data[i]["Gas Station Name"]}</b></br><br>Nearest 14er : ${data[i]["Mountain Peak"]}</br><br>Miles From Mountain Peak : ${data[i]["Gas Station Distance from Mountain Peak (mi)"]}`)
     }
-  // for(i=0; i<data.length; i++) {
-  //       console.log(data[i]);
-  // }
 
-    if(("Hot Spring Latitudes" ==data[i]) & ("Hot Spring Longitudes" ==data[i])) {
+    if(("Hot Spring Latitudes" in data[i]) & ("Hot Spring Longitudes" in data[i])) {
       hotSprings_lats.push(data[i]["Hot Spring Latitudes"]);
       hotSprings_longs.push(data[i]["Hot Spring Longitudes"]);
 
       var hotSpringsIcon = L.icon({
-        iconUrl : "charger.png",
-        iconSize : [100,100]
+        iconUrl : "hot_spring.png",
+        iconSize : [20,20]
     });
       L.marker([data[i]["Hot Spring Latitudes"], data[i]["Hot Spring Longitudes"]], {
         icon : hotSpringsIcon
       }).addTo(myMap).bindPopup(`<br><b>Hot Spring Name : ${data[i]["Hot Spring Name"]}</b></br><br>Nearest 14er : ${data[i]["Mountain Peak"]}</br><br>Miles From Mountain Peak : ${data[i]["Charging Station Distance from Mountain Peak (mi)"]}`)}
   
-    if(("Charging Station Latitude" ==data[i]) & ("Charging Station Longitude" ==data[i])) {
+    if(("Charging Station Latitude" in data[i]) & ("Charging Station Longitude" in data[i])) {
       charger_lats.push(data[i]["Charging Station Latitude"]);
       charger_longs.push(data[i]["Charging Station Longitude"]);
 
       var chargerIcon = L.icon({
         iconUrl : "charger.png",
-        iconSize : [1000,1000]
+        iconSize : [20,20]
     });
       L.marker([data[i]["Charging Station Latitude"], data[i]["Charging Station Longitude"]], {
         icon : chargerIcon
       }).addTo(myMap).bindPopup(`<br><b>Charger Station Name : ${data[i]["Charger Station Name"]}</b></br><br>Nearest 14er : ${data[i]["Mountain Peak"]}</br><br>Miles From Mountain Peak : ${data[i]["Charging Station Distance from Mountain Peak (mi)"]}`)}
-
+    };
 });    
