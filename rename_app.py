@@ -24,13 +24,6 @@ app.config["MONGO_URI"] ="mongodb://localhost:27017/FullData"
 mongo=PyMongo(app)
 # json = FlaskJSON(app)
 
-# with open ('Resources/mountains_db.json', 'r') as myfile:
-# 	data= myfile.read()
-
-
-
-
-
 # @app.route("/")
 # def home():
 	# print("This is working")
@@ -93,12 +86,6 @@ def get14ers():
 	# return json_util.loads(json_util.dumps(data, indent=2))
 	# return loads(dumps(cursor))
 	return jsonify(data)
-
-# def showjson():
-#     SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
-#     json_url = os.path.join(SITE_ROOT, "Resources", "mountains_db.json")
-#     data = json.load(open(json_url))
-#     return render_template('showjson.jade', data=data)
-
+	
 if __name__=='__main__':
 	app.run(debug=True)
