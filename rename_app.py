@@ -19,7 +19,7 @@ from flask_cors import CORS
 app=Flask(__name__)
 CORS(app)
 # # Use flast_pymongo to set up mongo connection
-app.config["MONGO_URI"] ="mongodb://localhost:27017/FullData"
+app.config["MONGO_URI"] = 'mongodb+srv://dalberghini:Jjaxxpass2@project2.7h3eu.mongodb.net/FullData'# ?retryWrites=true&w=majority'
 
 mongo=PyMongo(app)
 # json = FlaskJSON(app)

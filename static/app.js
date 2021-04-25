@@ -39,11 +39,8 @@
 // accessToken: API_KEY
 // });
 // initialize the map on the "map" div with a given center and zoom
-const dataurl = "/jsonify"
-
 
 var myMap= L.map('mapid').setView([38.53923062275447, -105.99221539654775],8);
-
 
 // Add a tile layer (the background map image) to our map
 // We use the addTo method to add objects to our map
