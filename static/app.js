@@ -144,28 +144,28 @@ d3.json("http://localhost:5000/get14ers").then(function(data) {
     });
       var c_markers = L.marker([data[i]["Charging Station Latitude"], data[i]["Charging Station Longitude"]], {
         icon : chargerIcon
-      }).addTo(myMap).bindPopup(`<br><b>Charger Station Name : ${data[i]["Charger Station Name"]}</b></br><br>Nearest 14er : ${data[i]["Mountain Peak"]}</br><br>Miles From Mountain Peak : ${data[i]["Charging Station Distance from Mountain Peak (mi)"]}`)}
+      }).addTo(myMap).bindPopup(`<br><b>Charger Station Name : ${data[i]["Charger Station Name"]}</b></br><br>Nearest 14er : ${data[i]["Mountain Peak"]}</br><br>Miles From Mountain Peak : ${data[i]["Charging Distance from Mountain Peak (mi)"]}`)}
     };
-    // var c_layer = L.layerGroup(c_markers);
-    // var camp_layer = L.layerGroup(camp_markers);
-    // var g_layer = L.layerGroup(g_markers);
-    // var b_layer = L.layerGroup(b_markers);
-    // var h_layer = L.layerGroup(h_markers);
-    // var overlayMaps = {
-    //   "Campsites" : camp_layer,
-    //   "Charging Stations" : c_layer,
-    //   "Gas Stations" : g_layer,
-    //   "Breweries" : b_layer,
-    //   "Hot Springs" : h_layer,
-    // };
-    // var baseMaps = {
-    //   "Light Map" : lightMap,
-    //   "Satellite Map" : satelliteMap,
-    //   "Outdoors Map" : outdoorsMap
-    // };
-    // L.control.layers(baseMaps, overlayMaps, {
-    //   collapsed : false
-    // }).addTo(myMap);
+    var c_layer = L.layerGroup(c_markers);
+    var camp_layer = L.layerGroup(camp_markers);
+    var g_layer = L.layerGroup(g_markers);
+    var b_layer = L.layerGroup(b_markers);
+    var h_layer = L.layerGroup(h_markers);
+    var overlayMaps = {
+      "Campsites" : camp_layer,
+      "Charging Stations" : c_layer,
+      "Gas Stations" : g_layer,
+      "Breweries" : b_layer,
+      "Hot Springs" : h_layer,
+    };
+    var baseMaps = {
+      "Light Map" : lightMap,
+      "Satellite Map" : satelliteMap,
+      "Outdoors Map" : outdoorsMap
+    };
+    L.control.layers(baseMaps, overlayMaps, {
+      collapsed : false
+    }).addTo(myMap);
 }); 
 
 
