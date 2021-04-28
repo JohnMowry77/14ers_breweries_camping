@@ -86,6 +86,11 @@ d3.json("http://localhost:5000/get14ers").then(function(data) {
   var hotSprings_longs=[]
   var charger_lats= []
   var charger_longs= []
+  var camp_list=[]
+  var b_list=[]
+  var g_list=[]
+  var h_list=[]
+  var ch_list=[]
   for(i=0; i<data.length; i++) {
     if(("Campsite Latitude" in data[i]) & ("Campsite Longitude" in data[i])){ 
       camp_lats.push(data[i]["Campsite Latitude"]);
@@ -98,6 +103,8 @@ d3.json("http://localhost:5000/get14ers").then(function(data) {
         icon: campIcon}
          ).addTo(myMap).bindPopup(`<br><b>Campsite Name : ${data[i]["name"]}</b></br><br>Nearest 14er: ${data[i]["Mountain Peak"]}</br><br>Miles from 14er : ${data[i]["Distance from Campsite (mi)"]}</br>`)
     }
+      camp_list.push(camp_markers)
+      // console.log(camp_list)
     if(("Brewery Latitudes" in data[i]) & ("Brewery Longitudes" in data[i])) {
       beer_lats.push(data[i]["Brewery Latitudes"]);
       beer_longs.push(data[i]["Brewery Longitudes"]);
@@ -105,10 +112,11 @@ d3.json("http://localhost:5000/get14ers").then(function(data) {
         iconUrl : "beer.png",
         iconSize : [15,15]
       });
-      var b_markers = L.marker([data[i]['Brewery Latitudes'], data[i]['Brewery Longitudes']], {  
+      var brewery_markers = L.marker([data[i]['Brewery Latitudes'], data[i]['Brewery Longitudes']], {  
         icon: beerIcon
       }).addTo(myMap).bindPopup(`<br><b>Brewery Name : ${data[i]["Brewery Name"]}</b></br><br>Brewery Address : ${data[i]["Brewery Address"]}</br><br>Brewery Website : ${data[i]["Brewery Website"]}</br><br>Nearest 14er : ${data[i]["Mountain Peak"]}</br>`)
     }
+      // b_list.push(brewery_markers)
 
     if(("Gas Station Latitude" in data[i]) & ("Gas Station Longitude" in data[i])) {
       var gasIcon = L.icon({
@@ -121,6 +129,7 @@ d3.json("http://localhost:5000/get14ers").then(function(data) {
         icon : gasIcon
       }).addTo(myMap).bindPopup(`<br><b>Gas Station Name : ${data[i]["Gas Station Name"]}</b></br><br>Nearest 14er : ${data[i]["Mountain Peak"]}</br><br>Miles From Mountain Peak : ${data[i]["Gas Station Distance from Mountain Peak (mi)"]}`)
     }
+      // g_list.push(g_markers)
 
     if(("Hot Spring Latitudes" in data[i]) & ("Hot Spring Longitudes" in data[i])) {
       hotSprings_lats.push(data[i]["Hot Spring Latitudes"]);
@@ -146,10 +155,11 @@ d3.json("http://localhost:5000/get14ers").then(function(data) {
         icon : chargerIcon
       }).addTo(myMap).bindPopup(`<br><b>Charger Station Name : ${data[i]["Charger Station Name"]}</b></br><br>Nearest 14er : ${data[i]["Mountain Peak"]}</br><br>Miles From Mountain Peak : ${data[i]["Charging Distance from Mountain Peak (mi)"]}`)}
     };
-    var c_layer = L.layerGroup(c_markers);
-    var camp_layer = L.layerGroup(camp_markers);
-    var g_layer = L.layerGroup(g_markers);
-    var b_layer = L.layerGroup(b_markers);
+    console.log(c_markers)
+    var c_layer = L.layerGroup([c_markers]);
+    var camp_layer = L.layerGroup(camp_list);
+    var g_layer = L.layerGroup(g_list);
+    var b_layer = L.layerGroup(b_list);
     var h_layer = L.layerGroup(h_markers);
     var overlayMaps = {
       "Campsites" : camp_layer,
