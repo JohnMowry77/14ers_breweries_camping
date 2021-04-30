@@ -24,23 +24,21 @@ app.config["MONGO_URI"] = 'mongodb+srv://dalberghini:Jjaxxpass2@project2.7h3eu.m
 mongo=PyMongo(app)
 # json = FlaskJSON(app)
 
-# @app.route("/")
-# def home():
-	# print("This is working")
-		# return "Welcome to Map Page"
-	# mongo_data=mongo.db.mountains_db.find_one()
-	# #print(list(data_from_mongo))	
-	# if mongo_data:
-	# 	return render_template('index.html', mountains_db=mongo_data)
-	# else:
-		# return 'Error Try Again'
-	#return render_template('index.html', dict=data_from_mongo)
-	# return render_template('index.html')
-	# return redirect('/')
-
 @app.route("/")
-def index():
-    return render_template('index.html', title="page") 
+def outside():
+	return render_template('index.html', title="page")
+
+@app.route("/beer")
+def breweries():
+	return render_template('breweries.html', title="page")
+
+@app.route("/fourteeners")
+def fourteeners():
+	return render_template('mountains.html', title="page")
+
+@app.route("/camping")
+def camping():
+	return render_template('camping.html', title="page")
 
 @app.route('/getmountains')
 def getmountains():

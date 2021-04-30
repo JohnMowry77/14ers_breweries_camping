@@ -43,7 +43,7 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
   accessToken: API_KEY
 }).addTo(myMap);
 
-d3.json("http://localhost:5000/getmountains").then(function(data) {
+d3.json("/getmountains").then(function(data) {
   var mt_lats = []
   var mt_longs = []
   var mts = []
@@ -51,7 +51,7 @@ d3.json("http://localhost:5000/getmountains").then(function(data) {
     mt_longs.push(data[i]["Peak Longitude"]);
     mt_lats.push(data[i]["Peak Latitude"]);
     var mtIcon = L.icon({
-      iconUrl: 'mt.png',
+      iconUrl: '../static/img/mt.png',
       iconSize: [20, 20]
     });
   var marker = L.marker([mt_lats[i], mt_longs[i]], {
@@ -75,7 +75,7 @@ d3.json("http://localhost:5000/getmountains").then(function(data) {
 
 // myMap.on('click', onMapClick);
 
-d3.json("http://localhost:5000/get14ers").then(function(data) { 
+d3.json("/get14ers").then(function(data) { 
   var camp_lats = []
   var camp_longs = []
   var beer_lats = []
@@ -96,7 +96,7 @@ d3.json("http://localhost:5000/get14ers").then(function(data) {
       camp_lats.push(data[i]["Campsite Latitude"]);
       camp_longs.push(data[i]["Campsite Longitude"]);
       var campIcon = L.icon({
-        iconUrl: 'camp.png',
+        iconUrl: '../static/img/camp.png',
         iconSize: [10, 10]
       });
       var camp_markers = L.marker([data[i]['Campsite Latitude'], data[i]['Campsite Longitude']], {        
@@ -109,7 +109,7 @@ d3.json("http://localhost:5000/get14ers").then(function(data) {
       beer_lats.push(data[i]["Brewery Latitudes"]);
       beer_longs.push(data[i]["Brewery Longitudes"]);
       var beerIcon = L.icon({
-        iconUrl : "beer.png",
+        iconUrl : "../static/img/beer.png",
         iconSize : [15,15]
       });
       var brewery_markers = L.marker([data[i]['Brewery Latitudes'], data[i]['Brewery Longitudes']], {  
@@ -121,7 +121,7 @@ d3.json("http://localhost:5000/get14ers").then(function(data) {
 
     if(("Gas Station Latitude" in data[i]) & ("Gas Station Longitude" in data[i])) {
       var gasIcon = L.icon({
-        iconUrl : "Gas.png",
+        iconUrl : "../static/img/Gas.png",
         iconSize : [10,10]
       });
       gas_lats.push(data[i]["Gas Station Latitude"]);
@@ -136,7 +136,7 @@ d3.json("http://localhost:5000/get14ers").then(function(data) {
       hotSprings_longs.push(data[i]["Hot Spring Longitudes"]);
 
       var hotSpringsIcon = L.icon({
-        iconUrl : "hot_spring.png",
+        iconUrl : "../static/img/hot_spring.png",
         iconSize : [20,20]
     });
       var h_markers = L.marker([data[i]["Hot Spring Latitudes"], data[i]["Hot Spring Longitudes"]], {
@@ -150,7 +150,7 @@ d3.json("http://localhost:5000/get14ers").then(function(data) {
       charger_longs.push(data[i]["Charging Station Longitude"]);
 
       var chargerIcon = L.icon({
-        iconUrl : "charger.png",
+        iconUrl : "../static/img/charger.png",
         iconSize : [20,20]
     });
       var c_markers = L.marker([data[i]["Charging Station Latitude"], data[i]["Charging Station Longitude"]], {
