@@ -28,6 +28,8 @@ In addition to the map, the website has the following elements:
 10. Used Flask to set-up a conneciton to the database in Mongo Atlas and wrote d3 functions to run through the data to plot markers in mapbox using leaflet with custom icons and appropriate pop-up information bound to them.
 11. Converted fourteener, brewery, and campsite csv files to html tables in Jupyter notebook
 12. Created html using bootstrap css styling elements, including a navigation bar and a carousel of images, to display the map and pages for the html data tables. Also, used leaflet css.
+13. Used 6 routes in Flask, two for the collections created and four were used for calling the four seperate html files. 
+14. Created two directors within static folder: gifs and img which for our saved gifs, images, and icons. 
 
 ## Data Sources
 - **14er Project/ETL Project:** https://github.com/dalberghini/14er_project
