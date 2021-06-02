@@ -1,5 +1,5 @@
 # Enjoy Colorado! Hike a Fourteener, Grab a Beer, and Relax
-![Capture](../static/img/ReadMe_img.JPG)
+![Capture](/static/img/ReadMe_img.JPG)
 
 
 ## Description of Application
