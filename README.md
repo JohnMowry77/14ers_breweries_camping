@@ -1,6 +1,6 @@
 # Enjoy Colorado! Hike a Fourteener, Grab a Beer, and Relax
-![Capture](/static/img/ReadMe_img.JPG)
 
+![Capture](/Users/johnmowry/Documents/Denver-Data-12-2020/WorkHereNew/Homework/14ers_breweries_camping/static/img/ReadMe_img.jpg)
 
 ## Description of Application
 People can use this interactive website to help plan an adventure in Colorado focused around hiking a fourteener. The key feature of the website is a map of Colorado with the following markers and information bound to them:
